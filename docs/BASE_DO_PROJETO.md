@@ -4,6 +4,8 @@
 **Versão:** 0.2 — levantamento com definições do grupo  
 **Finalidade:** reunir o entendimento do projeto e orientar a produção posterior dos documentos de requisitos, análise e arquitetura, além do protótipo da disciplina.
 
+**Implementação inicial:** o grupo autorizou o desenvolvimento do caminho banco → API → painel e solicitou a interface em React. As decisões técnicas, fórmulas básicas adotadas e limites da primeira versão estão em [IMPLEMENTACAO_INICIAL.md](IMPLEMENTACAO_INICIAL.md). Esse registro complementa as propostas e pendências deste levantamento.
+
 Este documento reúne evidências dos materiais fornecidos, interpretações e propostas de escopo. Não representa uma especificação aprovada pela GRAMB ou pelo professor. As dúvidas devem permanecer explícitas até serem esclarecidas.
 
 ### Definições do grupo em 11/11/2026
