@@ -1,0 +1,14 @@
+services:
+  app:
+    build:
+      context: .
+      target: runtime
+    ports:
+      - "127.0.0.1:${PULSO_PORT:-8000}:8000"
+    volumes:
+      - pulso-data:/app/data
+    init: true
+    restart: unless-stopped
+
+volumes:
+  pulso-data:

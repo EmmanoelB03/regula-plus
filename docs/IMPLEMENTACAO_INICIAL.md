@@ -21,6 +21,14 @@ A API fornece dados agregados, sem registros de pacientes. As consultas usam par
 
 O servidor Python também pode entregar os arquivos compilados do React. Durante o desenvolvimento, o proxy do Vite encaminha as requisições REST para a API.
 
+### Ambiente Docker
+
+Por solicitação do grupo, foi acrescentado um ambiente Docker. O build usa Node 22 para compilar o React e a imagem de execução usa Python 3.12 com SQLite. Não há dependências Python externas nesta versão.
+
+O Compose executa a aplicação na porta local 8000, com volume nomeado para `/app/data`, usuário sem privilégios de root e healthcheck que consulta a API. O banco do container é separado do banco usado na execução local. Alterações no código são aplicadas reconstruindo a imagem; não há recarga automática no ambiente Docker inicial.
+
+A etapa `test` do Dockerfile permite executar os testes com a mesma base Python, sem incluí-los na imagem final. Os comandos de uso estão no README.
+
 ## Modelo inicial dos dados
 
 - `regions`: Geres representadas na demonstração.

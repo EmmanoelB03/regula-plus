@@ -13,7 +13,40 @@ Protótipo navegável de gestão da oferta ambulatorial, desenvolvido como base 
 - Detalhes por especialidade com histórico mensal e página de metodologia.
 - Estados de carregamento, erro, recorte vazio e denominador zero.
 
-## Executar em desenvolvimento
+## Executar com Docker (ambiente Python)
+
+Requisitos: Docker e Docker Compose. Não é necessário instalar Python ou Node no computador.
+
+```bash
+docker compose up --build -d
+```
+
+Abra **http://localhost:8000**. O React é compilado em uma etapa Node; o container que executa a aplicação usa **Python 3.12**, entrega a interface e a API e armazena o SQLite em um volume persistente. A aplicação roda com usuário sem privilégios de root.
+
+```bash
+docker compose logs -f app       # acompanhar a aplicação
+docker compose ps               # verificar estado e healthcheck
+docker compose exec app python  # abrir o interpretador Python do ambiente
+docker compose down             # parar e remover o container, preservando o banco
+```
+
+O volume `pulso-data` recebe uma base fictícia na primeira inicialização. Ele é separado do banco local em `data/` e permanece após recriar o container ou executar `docker compose down`. Usar `docker compose down -v` apaga também os dados desse ambiente.
+
+Após alterar o código, execute novamente `docker compose up --build -d`. Para usar outra porta:
+
+```bash
+PULSO_PORT=8001 docker compose up --build -d
+```
+
+Para verificar os testes no mesmo ambiente Python do container:
+
+```bash
+docker build --target test -t pulso-tests .
+```
+
+O Dockerfile tem uma etapa exclusiva de testes; eles não são executados automaticamente no build da aplicação. O container é destinado à demonstração local, e sua porta é publicada apenas em `127.0.0.1`.
+
+## Executar em desenvolvimento sem Docker
 
 Requisitos: Python 3.10+ e Node.js 22 com npm. O backend usa apenas a biblioteca padrão do Python.
 
